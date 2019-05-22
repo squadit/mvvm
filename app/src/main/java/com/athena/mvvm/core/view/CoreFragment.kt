@@ -23,7 +23,7 @@ open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, Perm
 
     //region lifecycle
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         softInputHandler = context as SoftInputHandler
         orientationHandler = context as OrientationHandler
