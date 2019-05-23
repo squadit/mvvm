@@ -17,37 +17,6 @@ abstract class BaseFragment<VM : BaseFragmentViewModel> : CoreFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = getVM()
-        viewModel?.onCreate()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel?.onActivityCreated()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel?.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel?.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        viewModel?.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        viewModel?.onStop()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        viewModel?.onDetach()
     }
 
     //endregion

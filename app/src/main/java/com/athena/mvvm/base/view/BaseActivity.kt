@@ -17,27 +17,6 @@ abstract class BaseActivity<VM : BaseActivityViewModel> : CoreActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = getVM()
-        viewModel?.onCreate()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel?.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel?.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        viewModel?.onPause()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        viewModel?.onStop()
     }
 
     //endregion
