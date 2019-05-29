@@ -1,14 +1,14 @@
 package com.athena.mvvm.base.view
 
 import android.os.Bundle
-import com.athena.mvvm.base.viewmodel.BaseFragmentViewModel
+import com.athena.mvvm.base.viewmodel.BaseViewModel
 import com.athena.mvvm.core.view.CoreFragment
 
-abstract class BaseFragment<VM : BaseFragmentViewModel> : CoreFragment() {
+abstract class BaseFragment<VM : BaseViewModel> : CoreFragment() {
 
     //region fields
 
-    protected var viewModel: VM? = null
+    protected lateinit var viewModel: VM
 
     //endregion
 

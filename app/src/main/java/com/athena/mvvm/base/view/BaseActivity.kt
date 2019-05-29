@@ -1,14 +1,14 @@
 package com.athena.mvvm.base.view
 
 import android.os.Bundle
-import com.athena.mvvm.base.viewmodel.BaseActivityViewModel
+import com.athena.mvvm.base.viewmodel.BaseViewModel
 import com.athena.mvvm.core.view.CoreActivity
 
-abstract class BaseActivity<VM : BaseActivityViewModel> : CoreActivity() {
+abstract class BaseActivity<VM : BaseViewModel> : CoreActivity() {
 
     //region fields
 
-    protected var viewModel: VM? = null
+    protected lateinit var viewModel: VM
 
     //endregion
 
