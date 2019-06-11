@@ -5,7 +5,7 @@ ext {
 
     publishedGroupId = 'com.athena.mvvm'
     artifact = 'mvvm'
-    libraryVersion = '0.0.6'
+    libraryVersion = '0.0.7'
 
     libraryDescription = 'Core library for Android development'
     siteUrl = 'https://github.com/squadit/mvvm'

@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.athena.mvvm.core.callback.PermissionCallback
 import com.athena.mvvm.core.handler.DisplayHandler
 import com.athena.mvvm.core.handler.OrientationHandler
@@ -74,6 +75,25 @@ open class CoreActivity : AppCompatActivity(), OrientationHandler, SoftInputHand
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(permission), 200)
         }
+    }
+
+    //endregion
+
+    //region navigation
+
+    fun addFragment(containerViewId: Int, fragment: Fragment, tag: String? = null) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(containerViewId, fragment, tag)
+            .commit()
+    }
+
+    fun replaceFragment(containerViewId: Int, fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(containerViewId, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     //endregion

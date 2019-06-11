@@ -74,6 +74,25 @@ open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, Perm
 
     //endregion
 
+    //region navigation
+
+    fun addFragment(containerViewId: Int, fragment: Fragment, tag: String? = null) {
+        childFragmentManager
+            .beginTransaction()
+            .add(containerViewId, fragment, tag)
+            .commit()
+    }
+
+    fun replaceFragment(containerViewId: Int, fragment: Fragment) {
+        childFragmentManager
+            .beginTransaction()
+            .replace(containerViewId, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    //endregion
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
             permissionCallback?.onPermissionGranted()
