@@ -85,6 +85,7 @@ open class CoreActivity : AppCompatActivity(), OrientationHandler, SoftInputHand
         supportFragmentManager
             .beginTransaction()
             .add(containerViewId, fragment, tag)
+            .addToBackStack(null)
             .commit()
     }
 
@@ -92,7 +93,6 @@ open class CoreActivity : AppCompatActivity(), OrientationHandler, SoftInputHand
         supportFragmentManager
             .beginTransaction()
             .replace(containerViewId, fragment)
-            .addToBackStack(null)
             .commit()
     }
 

@@ -80,6 +80,7 @@ open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, Perm
         childFragmentManager
             .beginTransaction()
             .add(containerViewId, fragment, tag)
+            .addToBackStack(null)
             .commit()
     }
 
@@ -87,7 +88,6 @@ open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, Perm
         childFragmentManager
             .beginTransaction()
             .replace(containerViewId, fragment)
-            .addToBackStack(null)
             .commit()
     }
 

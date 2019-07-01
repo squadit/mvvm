@@ -11,7 +11,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName "0.0.7"
+        versionName "0.0.9"
     }
 
     buildTypes {
@@ -31,7 +31,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
-    implementation 'androidx.core:core-ktx:1.2.0-alpha01'
+    implementation 'androidx.core:core-ktx:1.2.0-alpha02'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha01'
 }
 
