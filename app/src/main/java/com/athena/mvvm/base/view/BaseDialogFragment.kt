@@ -7,7 +7,7 @@ abstract class BaseDialogFragment<VM : BaseViewModel> : CoreDialogFragment() {
 
     //region fields
 
-    protected lateinit var viewModel: VM
+    lateinit var viewModel: VM
 
     //endregion
 }

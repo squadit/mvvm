@@ -8,7 +8,7 @@ abstract class BaseFragment<VM : BaseViewModel> : CoreFragment() {
 
     //region fields
 
-    protected lateinit var viewModel: VM
+    lateinit var viewModel: VM
 
     //endregion
 

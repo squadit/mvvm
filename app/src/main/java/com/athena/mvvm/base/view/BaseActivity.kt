@@ -8,7 +8,7 @@ abstract class BaseActivity<VM : BaseViewModel> : CoreActivity() {
 
     //region fields
 
-    protected lateinit var viewModel: VM
+    lateinit var viewModel: VM
 
     //endregion
 
