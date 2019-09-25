@@ -5,4 +5,8 @@ interface PermissionCallback {
     fun onPermissionGranted()
 
     fun onPermissionDenied()
+
+    fun onNeverAskAgain()
+
+    fun onAlreadyGranted()
 }

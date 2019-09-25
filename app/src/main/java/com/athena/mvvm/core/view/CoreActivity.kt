@@ -3,6 +3,7 @@ package com.athena.mvvm.core.view
 import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -70,7 +71,7 @@ open class CoreActivity : AppCompatActivity(), OrientationHandler, SoftInputHand
     override fun requestPermission(permission: String, permissionCallback: PermissionCallback) {
         this.permissionCallback = permissionCallback
         if (hasPermission(permission)) {
-            this.permissionCallback?.onPermissionGranted()
+            this.permissionCallback?.onAlreadyGranted()
             this.permissionCallback = null
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(permission), 200)
@@ -104,7 +105,15 @@ open class CoreActivity : AppCompatActivity(), OrientationHandler, SoftInputHand
             permissionCallback?.onPermissionGranted()
             permissionCallback = null
         } else {
-            permissionCallback?.onPermissionDenied()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])){
+                    permissionCallback?.onPermissionDenied()
+                } else{
+                    permissionCallback?.onNeverAskAgain()
+                }
+            } else {
+                permissionCallback?.onPermissionDenied()
+            }
             permissionCallback = null
         }
     }

@@ -2,6 +2,7 @@ package com.athena.mvvm.core.view
 
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.athena.mvvm.core.callback.PermissionCallback
@@ -10,7 +11,8 @@ import com.athena.mvvm.core.handler.OrientationHandler
 import com.athena.mvvm.core.handler.PermissionHandler
 import com.athena.mvvm.core.handler.SoftInputHandler
 
-open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, PermissionHandler, DisplayHandler {
+open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, PermissionHandler,
+    DisplayHandler {
 
     //region fields
 
@@ -59,13 +61,16 @@ open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, Perm
     //region permission
 
     override fun hasPermission(permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(context!!, permission) == PackageManager.PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(
+            context!!,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun requestPermission(permission: String, permissionCallback: PermissionCallback) {
         this.permissionCallback = permissionCallback
         if (hasPermission(permission)) {
-            this.permissionCallback?.onPermissionGranted()
+            this.permissionCallback?.onAlreadyGranted()
             this.permissionCallback = null
         } else {
             requestPermissions(arrayOf(permission), 200)
@@ -93,12 +98,24 @@ open class CoreFragment : Fragment(), OrientationHandler, SoftInputHandler, Perm
 
     //endregion
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
             permissionCallback?.onPermissionGranted()
             permissionCallback = null
         } else {
-            permissionCallback?.onPermissionDenied()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (shouldShowRequestPermissionRationale(permissions[0])) {
+                    permissionCallback?.onPermissionDenied()
+                } else {
+                    permissionCallback?.onNeverAskAgain()
+                }
+            } else {
+                permissionCallback?.onPermissionDenied()
+            }
             permissionCallback = null
         }
     }
