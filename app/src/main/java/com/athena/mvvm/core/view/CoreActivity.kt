@@ -99,6 +99,7 @@ open class CoreActivity : AppCompatActivity(), OrientationHandler, SoftInputHand
     //endregion
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
             permissionCallback?.onPermissionGranted()
             permissionCallback = null
